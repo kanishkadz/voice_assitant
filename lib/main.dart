@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Voice Assistant',
       theme: ThemeData(
-        scaffoldBackgroundColor: Pallete.whiteColor,
-        backgroundColor: Pallete.whiteColor,
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Pallete.whiteColor, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(background: Pallete.whiteColor),
       ),
       home: const HomePage(),
     );
