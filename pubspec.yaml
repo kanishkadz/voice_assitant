@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_tts: ^4.1.0  # Package for text-to-speech functionality
+  flutter_tts: ^4.0.2  # Package for text-to-speech functionality
 
   cupertino_icons: ^1.0.6
 
