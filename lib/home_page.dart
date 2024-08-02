@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wambi"),
+        title: Text("WAMBI"),
         leading: const Icon(Icons.menu),
         centerTitle: true,
       ),
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            
+
             alignment: Alignment.centerLeft,
             child: const Text('Here are a few features', style: TextStyle(
               fontFamily: 'Sera Pro',
