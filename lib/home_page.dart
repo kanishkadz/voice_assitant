@@ -34,6 +34,13 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
+          Container(
+            height: 123,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: AssetImage('assets/images/logo.png'))
+            ),
+          ),
         ],
       ),
     );
