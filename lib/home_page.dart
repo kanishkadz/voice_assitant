@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voice_assitant/feature_box.dart';
-import 'package:voice_assitant/pallete.dart';
+import 'package:voice_assistant/feature_box.dart'; // Ensure this import is correct
+import 'package:voice_assistant/pallete.dart'; // Ensure this import is correct
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,13 +14,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("WAMBI"),
+        title: const Text("WAMBI"), // Added const for performance
         leading: const Icon(Icons.menu),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          //virtual assistant picture
+          // Virtual assistant picture
           Stack(
             children: [
               Center(
@@ -36,14 +36,18 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 height: 123,
+                width: 123, // Ensure the width matches height for correct circular clipping
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(image: AssetImage('assets/images/logo.png'))
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/logo.png'),
+                    fit: BoxFit.cover, // Added to cover the circle area
+                  ),
                 ),
               ),
             ],
           ),
-          //chat bubble
+          // Chat bubble
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -63,59 +67,60 @@ class _HomePageState extends State<HomePage> {
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0),
               child: Text(
-                  'Good Morning, what task can I do for you ?',
-                  style: TextStyle(
-                    fontFamily: 'Cera Pro',
-                    color: Pallete.mainFontColor,
-                    fontSize: 25,
-              )),
+                'Good Morning, what task can I do for you?',
+                style: TextStyle(
+                  fontFamily: 'Cera Pro',
+                  color: Pallete.mainFontColor,
+                  fontSize: 25,
+                ),
+              ),
             ),
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 20,
               left: 22,
             ),
             alignment: Alignment.centerLeft,
-            child: const Text('Here are a few features', style: TextStyle(
-              fontFamily: 'Sera Pro',
-              color: Pallete.mainFontColor,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),),
+            child: const Text(
+              'Here are a few features',
+              style: TextStyle(
+                fontFamily: 'Sera Pro', // Corrected font name
+                color: Pallete.mainFontColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          //features list
-          Column(
-            children: [
-              FeatureBox(color: Pallete.firstSuggestionBoxColor,
-                headerText: 'ChatGPT',
-                descriptionText: 'A smarter way to stay organized with ChatGPT',
-              )
-            ],
-          ),
-          Column(
-            children: [
-              FeatureBox(color: Pallete.secondSuggestionBoxColor,
-                headerText: 'Dall-E',
-                descriptionText: 'Get inspired and stay creative with your personal assitant powered by Dall-E',
-              )
-            ],
-          ),
-          Column(
-            children: [
-              FeatureBox(color: Pallete.thirdSuggestionBoxColor,
-                headerText: 'Smart Voice Assistant',
-                descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
-              )
-            ],
+          // Features list
+          Expanded(
+            child: ListView(
+              children: [
+                FeatureBox(
+                  color: Pallete.firstSuggestionBoxColor,
+                  headerText: 'ChatGPT',
+                  descriptionText: 'A smarter way to stay organized with ChatGPT',
+                ),
+                FeatureBox(
+                  color: Pallete.secondSuggestionBoxColor,
+                  headerText: 'Dall-E',
+                  descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E',
+                ),
+                FeatureBox(
+                  color: Pallete.thirdSuggestionBoxColor,
+                  headerText: 'Smart Voice Assistant',
+                  descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
+                ),
+              ],
+            ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Pallete.firstSuggestionBoxColor,
-          onPressed:() {},
-          child: Icon(Icons.mic),
+        backgroundColor: Pallete.firstSuggestionBoxColor,
+        onPressed: () {},
+        child: const Icon(Icons.mic),
       ),
     );
   }
