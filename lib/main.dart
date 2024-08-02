@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voice_assitant/home_page.dart';
+import 'package:voice_assitant/pallete.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wambi',
+      theme: ThemeData.light(useMaterial3: true).copyWith(
+        scaffoldBackgroundColor: Pallete.whiteColor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Pallete.whiteColor,
+        )
+      ),
       home: const HomePage()
     );
   }
