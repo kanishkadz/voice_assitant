@@ -56,6 +56,13 @@ class _HomePageState extends State<HomePage> {
                 color: Pallete.borderColor,
               ),
             ),
+            child: const Text(
+                'Good Morning, what task can I do for you ?',
+                style: const TextStyle(
+                  fontFamily: 'Cera Pro',
+                  color: Pallete.mainFontColor,
+                  fontSize: 25,
+            )),
           ),
         ],
       ),
