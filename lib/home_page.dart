@@ -94,6 +94,22 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
+          Column(
+            children: [
+              FeatureBox(color: Pallete.secondSuggestionBoxColor,
+                headerText: 'Dall-E',
+                descriptionText: 'Get inspired and stay creative with your personal assitant powered by Dall-E',
+              )
+            ],
+          ),
+          Column(
+            children: [
+              FeatureBox(color: Pallete.thirdSuggestionBoxColor,
+                headerText: 'Smart Voice Assistant',
+                descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
+              )
+            ],
+          ),
         ],
       ),
     );

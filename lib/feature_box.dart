@@ -22,12 +22,16 @@ class FeatureBox extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20).copyWith(left: 15, right: 15),
         child: Column(
           children: [
-            Text(headerText, style: TextStyle(
-              fontFamily: 'Sera Pro',
-              color: Pallete.blackColor,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(headerText, style: TextStyle(
+                fontFamily: 'Sera Pro',
+                color: Pallete.blackColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),),
+            ),
+            const SizedBox(height: 3),
             Text(descriptionText, style: TextStyle(
               fontFamily: 'Sera Pro',
               color: Pallete.blackColor,
