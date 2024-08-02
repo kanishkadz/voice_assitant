@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_assistant/feature_box.dart';
-import 'package:voice_assistant/pallete.dart'; 
+import 'package:voice_assistant/pallete.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,17 +11,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  final SpeechToText _speechToText = SpeechToText();
+  bool _isListening = false;
+  String _lastWords = '';
+
   @override
   void initState() {
     super.initState();
+    _initSpeechToText();
   }
-  
+
+  Future<void> _initSpeechToText() async {
+    bool available = await _speechToText.initialize();
+    if (available) {
+      setState(() {});
+    }
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {
+      _isListening = true;
+    });
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {
+      _isListening = false;
+    });
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("WAMBI"), // Added const for performance
+        title: const Text("WAMBI"),
         leading: const Icon(Icons.menu),
         centerTitle: true,
       ),
@@ -43,12 +75,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   height: 123,
-                  width: 123, // Ensure the width matches height for correct circular clipping
+                  width: 123,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: AssetImage('assets/images/logo.png'),
-                      fit: BoxFit.cover, // Added to cover the circle area
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -93,7 +125,7 @@ class _HomePageState extends State<HomePage> {
               child: const Text(
                 'Here are a few features',
                 style: TextStyle(
-                  fontFamily: 'Sera Pro', // Corrected font name
+                  fontFamily: 'Sera Pro',
                   color: Pallete.mainFontColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -101,34 +133,32 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // Features list
-            Expanded(
-              child: ListView(
-                children: [
-                  FeatureBox(
-                    color: Pallete.firstSuggestionBoxColor,
-                    headerText: 'ChatGPT',
-                    descriptionText: 'A smarter way to stay organized with ChatGPT',
-                  ),
-                  FeatureBox(
-                    color: Pallete.secondSuggestionBoxColor,
-                    headerText: 'Dall-E',
-                    descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E',
-                  ),
-                  FeatureBox(
-                    color: Pallete.thirdSuggestionBoxColor,
-                    headerText: 'Smart Voice Assistant',
-                    descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
-                  ),
-                ],
-              ),
+            Column(
+              children: [
+                FeatureBox(
+                  color: Pallete.firstSuggestionBoxColor,
+                  headerText: 'ChatGPT',
+                  descriptionText: 'A smarter way to stay organized with ChatGPT',
+                ),
+                FeatureBox(
+                  color: Pallete.secondSuggestionBoxColor,
+                  headerText: 'Dall-E',
+                  descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E',
+                ),
+                FeatureBox(
+                  color: Pallete.thirdSuggestionBoxColor,
+                  headerText: 'Smart Voice Assistant',
+                  descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
+                ),
+              ],
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Pallete.firstSuggestionBoxColor,
-        onPressed: () {},
-        child: const Icon(Icons.mic),
+        onPressed: _isListening ? _stopListening : _startListening,
+        child: Icon(_isListening ? Icons.stop : Icons.mic),
       ),
     );
   }

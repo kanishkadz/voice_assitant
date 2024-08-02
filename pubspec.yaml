@@ -1,6 +1,6 @@
 name: voice_assistant
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -10,8 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_tts: ^4.0.2  # Package for text-to-speech functionality
-
+  speech_to_text: ^6.6.2
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
@@ -21,11 +20,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
   assets:
     - assets/images/
     - assets/sounds/
-
   fonts:
     - family: Cera Pro
       fonts:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voice_assitant/home_page.dart';
-import 'package:voice_assitant/pallete.dart';
+import 'package:voice_assistant/home_page.dart';
+import 'package:voice_assistant/pallete.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,19 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Wambi',
-      theme: ThemeData.light(useMaterial3: true).copyWith(
+      title: 'Voice Assistant',
+      theme: ThemeData(
         scaffoldBackgroundColor: Pallete.whiteColor,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Pallete.whiteColor,
-        )
+        backgroundColor: Pallete.whiteColor,
+        primarySwatch: Colors.blue,
       ),
-      home: const HomePage()
+      home: const HomePage(),
     );
   }
 }
