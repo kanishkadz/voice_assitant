@@ -55,15 +55,32 @@ class _HomePageState extends State<HomePage> {
               border: Border.all(
                 color: Pallete.borderColor,
               ),
+              borderRadius: BorderRadius.circular(20).copyWith(
+                topLeft: Radius.zero,
+              ),
             ),
-            child: const Text(
-                'Good Morning, what task can I do for you ?',
-                style: const TextStyle(
-                  fontFamily: 'Cera Pro',
-                  color: Pallete.mainFontColor,
-                  fontSize: 25,
-            )),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Text(
+                  'Good Morning, what task can I do for you ?',
+                  style: TextStyle(
+                    fontFamily: 'Cera Pro',
+                    color: Pallete.mainFontColor,
+                    fontSize: 25,
+              )),
+            ),
           ),
+          Container(
+            
+            alignment: Alignment.centerLeft,
+            child: const Text('Here are a few features', style: TextStyle(
+              fontFamily: 'Sera Pro',
+              color: Pallete.mainFontColor,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),),
+          )
+          //suggestions list
         ],
       ),
     );
