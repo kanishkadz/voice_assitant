@@ -71,7 +71,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-
+            padding: const EdgeInsets.all(10),
+            margin: EdgeInsets.only(
+              top: 20,
+              left: 22,
+            ),
             alignment: Alignment.centerLeft,
             child: const Text('Here are a few features', style: TextStyle(
               fontFamily: 'Sera Pro',
