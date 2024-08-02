@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          //virtual assistant picture
           Stack(
             children: [
               Center(
@@ -31,14 +32,29 @@ class _HomePageState extends State<HomePage> {
                     shape: BoxShape.circle,
                   ),
                 ),
-              )
+              ),
+              Container(
+                height: 123,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: AssetImage('assets/images/logo.png'))
+                ),
+              ),
             ],
           ),
+          //chat bubble
           Container(
-            height: 123,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
+              top: 30,
+            ),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage('assets/images/logo.png'))
+              border: Border.all(
+                color: Pallete.borderColor,
+              ),
             ),
           ),
         ],
