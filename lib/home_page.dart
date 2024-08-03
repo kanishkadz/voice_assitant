@@ -170,6 +170,8 @@ class _HomePageState extends State<HomePage> {
             await _startListening();
           } else if (_speechToText.isListening) {
             await _stopListening();
+          } else {
+            _initSpeechToText();
           }
         },
         child: Icon(_isListening ? Icons.stop : Icons.mic),
