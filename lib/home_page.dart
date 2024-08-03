@@ -30,14 +30,14 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _startListening() async {
+  Future<void> _startListening() async {
     await _speechToText.listen(onResult: _onSpeechResult);
     setState(() {
       _isListening = true;
     });
   }
 
-  void _stopListening() async {
+  Future<void> _stopListening() async {
     await _speechToText.stop();
     setState(() {
       _isListening = false;
@@ -48,6 +48,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _lastWords = result.recognizedWords;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _speechToText.stop();
   }
 
   @override
@@ -159,7 +165,13 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Pallete.firstSuggestionBoxColor,
-        onPressed: _isListening ? _stopListening : _startListening,
+        onPressed: () async{
+          if(await _speechToText.hasPermission && _speechToText.isNotListening){
+            await _startListening();
+          } else if (_speechToText.isListening) {
+            await _stopListening();
+          }
+        },
         child: Icon(_isListening ? Icons.stop : Icons.mic),
       ),
     );
