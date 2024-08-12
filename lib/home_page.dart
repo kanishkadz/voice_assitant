@@ -1,7 +1,7 @@
-import 'package:allen/feature_box.dart';
-import 'package:allen/openai_service.dart';
-import 'package:allen/pallete.dart';
-import 'package:animate_do/animate_do.dart';
+import 'package:voice_assistant/feature_box.dart';
+import 'package:voice_assistant/openai_service.dart';
+import 'package:voice_assistant/pallete.dart';
+import 'package:voice_assistant/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
