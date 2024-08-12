@@ -1,5 +1,5 @@
-import 'package:allen/home_page.dart';
-import 'package:allen/pallete.dart';
+import 'package:voice_assistant/home_page.dart';
+import 'package:voice_assistant/pallete.dart';
 import 'package:flutter/material.dart';
 
 void main() {
