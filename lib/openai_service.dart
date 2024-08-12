@@ -5,13 +5,15 @@ import 'package:http/http.dart' as http;
 class OpenAIService {
   final List<Map<String, String>> messages = [];
 
+  get openAIAPIKey => null;
+
   Future<String> isArtPromptAPI(String prompt) async {
     try {
       final res = await http.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $openAIAPIKey',
+          'Authorization': 'Bearer $openAiAPIKey',
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
