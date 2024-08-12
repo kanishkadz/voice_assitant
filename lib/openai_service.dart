@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:allen/secrets.dart';
+import 'package:voice_assistant/secrets.dart';
 import 'package:http/http.dart' as http;
 
 class OpenAIService {
