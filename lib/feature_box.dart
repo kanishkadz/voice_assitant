@@ -1,4 +1,4 @@
-import 'package:voice_assistant/pallete.dart';
+import 'package:allen/pallete.dart';
 import 'package:flutter/material.dart';
 
 class FeatureBox extends StatelessWidget {

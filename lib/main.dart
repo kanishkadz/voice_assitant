@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voice_assistant/home_page.dart';
-import 'package:voice_assistant/pallete.dart';
+import 'package:allen/home_page.dart';
+import 'package:allen/pallete.dart';
 
 void main() {
   runApp(const MyApp());
