@@ -1,11 +1,11 @@
-import 'package:voice_assistant/feature_box.dart';
-import 'package:voice_assistant/openai_service.dart';
-import 'package:voice_assistant/pallete.dart';
-import 'package:voice_assistant/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:voice_assistant/animate_do.dart';
+import 'package:voice_assistant/feature_box.dart';
+import 'package:voice_assistant/openai_service.dart';
+import 'package:voice_assistant/pallete.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,40 +15,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final speechToText = SpeechToText();
-  final flutterTts = FlutterTts();
+  late final SpeechToText speechToText;
+  late final FlutterTts flutterTts;
   String lastWords = '';
   final OpenAIService openAIService = OpenAIService();
   String? generatedContent;
   String? generatedImageUrl;
-  int start = 200;
-  int delay = 200;
+  final int start = 200;
+  final int delay = 200;
 
   @override
   void initState() {
     super.initState();
+    speechToText = SpeechToText();
+    flutterTts = FlutterTts();
     initSpeechToText();
     initTextToSpeech();
   }
 
   Future<void> initTextToSpeech() async {
     await flutterTts.setSharedInstance(true);
-    setState(() {});
   }
 
   Future<void> initSpeechToText() async {
     await speechToText.initialize();
-    setState(() {});
   }
 
   Future<void> startListening() async {
     await speechToText.listen(onResult: onSpeechResult);
-    setState(() {});
   }
 
   Future<void> stopListening() async {
     await speechToText.stop();
-    setState(() {});
   }
 
   void onSpeechResult(SpeechRecognitionResult result) {
@@ -63,9 +61,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    super.dispose();
     speechToText.stop();
     flutterTts.stop();
+    super.dispose();
   }
 
   @override
@@ -81,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // virtual assistant picture
+            // Virtual assistant picture
             ZoomIn(
               child: Stack(
                 children: [
@@ -90,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                       height: 120,
                       width: 120,
                       margin: const EdgeInsets.only(top: 4),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Pallete.assistantCircleColor,
                         shape: BoxShape.circle,
                       ),
@@ -101,41 +99,28 @@ class _HomePageState extends State<HomePage> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/virtualAssistant.png',
-                        ),
+                        image: AssetImage('assets/images/virtualAssistant.png'),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            // chat bubble
+            // Chat bubble
             FadeInRight(
               child: Visibility(
                 visible: generatedImageUrl == null,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
-                  margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
-                    top: 30,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(top: 30),
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Pallete.borderColor,
-                    ),
-                    borderRadius: BorderRadius.circular(20).copyWith(
-                      topLeft: Radius.zero,
-                    ),
+                    border: Border.all(color: Pallete.borderColor),
+                    borderRadius: BorderRadius.circular(20).copyWith(topLeft: Radius.zero),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: Text(
-                      generatedContent == null
-                          ? 'Good Morning, what task can I do for you?'
-                          : generatedContent!,
+                      generatedContent ?? 'Good Morning, what task can I do for you?',
                       style: TextStyle(
                         fontFamily: 'Cera Pro',
                         color: Pallete.mainFontColor,
@@ -173,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            // features list
+            // Features list
             Visibility(
               visible: generatedContent == null && generatedImageUrl == null,
               child: Column(
@@ -183,8 +168,7 @@ class _HomePageState extends State<HomePage> {
                     child: const FeatureBox(
                       color: Pallete.firstSuggestionBoxColor,
                       headerText: 'ChatGPT',
-                      descriptionText:
-                      'A smarter way to stay organized and informed with ChatGPT',
+                      descriptionText: 'A smarter way to stay organized and informed with ChatGPT',
                     ),
                   ),
                   SlideInLeft(
@@ -192,8 +176,7 @@ class _HomePageState extends State<HomePage> {
                     child: const FeatureBox(
                       color: Pallete.secondSuggestionBoxColor,
                       headerText: 'Dall-E',
-                      descriptionText:
-                      'Get inspired and stay creative with your personal assistant powered by Dall-E',
+                      descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E',
                     ),
                   ),
                   SlideInLeft(
@@ -201,13 +184,12 @@ class _HomePageState extends State<HomePage> {
                     child: const FeatureBox(
                       color: Pallete.thirdSuggestionBoxColor,
                       headerText: 'Smart Voice Assistant',
-                      descriptionText:
-                      'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
+                      descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -216,24 +198,25 @@ class _HomePageState extends State<HomePage> {
         child: FloatingActionButton(
           backgroundColor: Pallete.firstSuggestionBoxColor,
           onPressed: () async {
-            if (await speechToText.hasPermission &&
-                speechToText.isNotListening) {
+            if (await speechToText.hasPermission && !speechToText.isListening) {
               await startListening();
             } else if (speechToText.isListening) {
               final speech = await openAIService.isArtPromptAPI(lastWords);
               if (speech.contains('https')) {
-                generatedImageUrl = speech;
-                generatedContent = null;
-                setState(() {});
+                setState(() {
+                  generatedImageUrl = speech;
+                  generatedContent = null;
+                });
               } else {
-                generatedImageUrl = null;
-                generatedContent = speech;
-                setState(() {});
+                setState(() {
+                  generatedImageUrl = null;
+                  generatedContent = speech;
+                });
                 await systemSpeak(speech);
               }
               await stopListening();
             } else {
-              initSpeechToText();
+              await initSpeechToText();
             }
           },
           child: Icon(
